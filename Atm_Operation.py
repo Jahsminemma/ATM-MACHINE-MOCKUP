@@ -86,6 +86,7 @@ def withdraw():
             userDetails[4] -= amount
             print("Withdrawal completed succesfully")
             print("Take your cash")
+            print("Your Balance is %d" % getBalance(userDetails))
         else:
             print("insuffiecient fund")
     
