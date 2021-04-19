@@ -1,6 +1,6 @@
 
 import random
-Database = { 8705029962: ["emma"," bola","bola@gmail.com", 1234, 0]}
+Database = {}
 
 ##INITIALIZE THE SYSTEM
 def init():
@@ -33,10 +33,6 @@ def login():
        for accountNumber, userDetails in Database.items():
             if (acctNumber == accountNumber  and accountPin == userDetails[3]):
                 bankOperation()
-                validDetails = True
-            else:
-                print("Invalid credentials \n Please login again \n")
-                validDetails = False
 
 
 #logout from the system
@@ -53,8 +49,9 @@ def register():
 
     #Adding user name, pin and account number to Database
     Database[accountNumber] = [firstName, lastName, accountEmail, accountPin, currentBalance]
-    print("*******Login with your account number and pin******\n************ ensure you keep it save**************")
     getAccountNumber = Database.keys()
+
+    print("*******Login with your account number and pin******\n************ ensure you keep it save**************")
     print("************Account Number : %d***********" % accountNumber) 
     login()
 
@@ -85,7 +82,6 @@ def withdraw():
             userDetails[4] -= amount
             print("Withdrawal completed succesfully")
             print("Take your cash")
-            print("Your Balance is %d" % getBalance(userDetails))
         else:
             print("insuffiecient fund")
     
@@ -114,11 +110,14 @@ def bankOperation():
         selectedOption = int(input("please select an option \n"))
         if (selectedOption == 1):
            withdraw()
+
         elif(selectedOption == 2):
             deposit()
+
         elif (selectedOption == 3):
-            for userDetails in Database.values():
+            for accountNumber, userDetails in Database.items():
                 print("Your account balance is %d" % getBalance(userDetails))
+
         elif (selectedOption == 4):
              input("What issue wil you like to report \n")
              print("Thank you for contacting us")
@@ -127,8 +126,13 @@ def bankOperation():
         inputOption = int(input("Would you like to do another transaction \n 1. Yes \n 2. NO \n"))
         if (inputOption == 1):
              operationRequest = True
+
         elif (inputOption == 2):
-            login()
+            init()
             operationRequest == False
+        else:
+            print("invalid input")
+            inputOption = int(input("Would you like to do another transaction \n 1. Yes \n 2. NO \n"))
+            
         
 init()
