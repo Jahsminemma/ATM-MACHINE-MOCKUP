@@ -55,8 +55,7 @@ def register():
     Database[accountNumber] = [firstName, lastName, accountEmail, accountPin, currentBalance]
     print("*******Login with your account number and pin******\n************ ensure you keep it save**************")
     getAccountNumber = Database.keys()
-    print("************Account Number : %d***********" % accountNumber)
-    print(Database.values()) 
+    print("************Account Number : %d***********" % accountNumber) 
     login()
 
 
